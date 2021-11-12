@@ -1,4 +1,9 @@
-return {
+--- Module for default highlight groups.
+local M = {}
+
+--- A table which each field stands for the name of the group to be highlighted
+--- and the field value stands for the highlight arguments.
+M.groups = {
   Character = {fg = 11},
   ColorColumn = {bg = 1},
   Comment = {fg = 6},
@@ -58,7 +63,7 @@ return {
   TabLineFill = {bg = 1},
   TabLineSel = {at = 'bold', bg = 0, fg = 7},
   Title = {at = 'bold', fg = 12},
-  Todo = {at = 'bold', fg = 12},
+  Todo = {at = 'bold,reverse', fg = 14},
   Type = {fg = 14},
   Underlined = {at = 'underline'},
   VertSplit = {bg = 1, fg = 4},
@@ -68,3 +73,5 @@ return {
   Whitespace = {fg = 5},
   WildMenu = {at = 'bold', bg = 0, fg = 6},
 }
+
+return M

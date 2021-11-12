@@ -38,10 +38,21 @@ SUPPORTED PLUGINS                                               *sopa-plugins*
 
 BUFFERLINE.NVIM                                              *sopa-bufferline*
 
-The highlight definitions for |bufferline| is defined in module `sopa.buf`.
-The following example shows how it can be used.
+The highlight definitions for |bufferline| are defined in module
+`sopa.bufferline`. The following example shows how it can be used.
 >
-  lua require'bufferline'.setup{highlights = require'sopa.buf'}
+  lua << END
+  require'bufferline'.setup{
+    highlights = require'sopa.bufferline'.groups
+  }
+  END
+
+NVIM-TREESITTER                                         *sopa-nvim-treesitter*
+
+The highlight definitions for |nvim-treesitter| are defined in module
+`sopa.tree-sitter`. The following example shows how it can be used.
+>
+  lua require'sopa.tree-sitter'.init()
 
 ============================================================================
 vim:ft=help:nospell

@@ -38,3 +38,4 @@ A GUI-only dark colorscheme for [Neovim](https://neovim.io).
 ## Supported Plugins
 
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
