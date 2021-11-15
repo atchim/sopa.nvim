@@ -81,23 +81,23 @@ end
 ---     lightness.
 ---   - 8 up to 15 are the indexes of the foreground colors sorted by its HUE.
 M.palette = {
-	[-1] = 'NONE',
-	[0] = '#080808', -- Black
-	[1] = '#0c0c0c', -- Gray 0C
-	[2] = '#121212', -- Gray 12
-	[3] = '#1a1a1a', -- Gray 1A
-	[4] = '#252525', -- Gray 25
-	[5] = '#383838', -- Gray 38
-	[6] = '#5a5a5a', -- Gray 5A
-	[7] = '#959595', -- White
-	[8] = '#ff5b5b', -- Red
-	[9] = '#bc8f05', -- Orange
-	[10] = '#54a900', -- Yellow
-	[11] = '#00ad2b', -- Green
-	[12] = '#00a7a7', -- Cyan
-	[13] = '#6b90ff', -- Blue
-	[14] = '#ba74ff', -- Purple
-	[15] = '#fc4ad0', -- Magenta
+  [-1] = 'NONE',
+  [0] = '#080808', -- Black
+  [1] = '#0c0c0c', -- Gray 0C
+  [2] = '#121212', -- Gray 12
+  [3] = '#1a1a1a', -- Gray 1A
+  [4] = '#252525', -- Gray 25
+  [5] = '#383838', -- Gray 38
+  [6] = '#5a5a5a', -- Gray 5A
+  [7] = '#959595', -- White
+  [8] = '#ff5b5b', -- Red
+  [9] = '#bc8f05', -- Orange
+  [10] = '#54a900', -- Yellow
+  [11] = '#00ad2b', -- Green
+  [12] = '#00a7a7', -- Cyan
+  [13] = '#6b90ff', -- Blue
+  [14] = '#ba74ff', -- Purple
+  [15] = '#fc4ad0', -- Magenta
 }
 
 return M

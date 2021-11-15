@@ -50,9 +50,9 @@ The highlight definitions for |bufferline| are defined in module
 NVIM-TREESITTER                                         *sopa-nvim-treesitter*
 
 The highlight definitions for |nvim-treesitter| are defined in module
-`sopa.tree-sitter`. The following example shows how it can be used.
+`sopa.treesitter`. The following example shows how it can be used.
 >
-  lua require'sopa.tree-sitter'.init()
+  lua require'sopa.treesitter'.init()
 
 ============================================================================
 vim:ft=help:nospell
