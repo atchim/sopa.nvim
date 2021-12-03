@@ -1,38 +1,12 @@
---- The stuff required to set the `sopa` color scheme for the `bufferline.nvim`
---- plugin.
----
---- ```lua
---- -- Usage Example
---- require'bufferline'.setup{
----   highlights = require'sopa.bufferline'.groups,
---- }
---- ```
 local M = {}
 
---- Helper function to return the highlight value for groups used by
---- `bufferline.nvim`.
----
---- The highlight value returned by this function contains colors from this
---- palette.
----
---- `t` may have the following fields:
----   - `at`: A string which is a coma-separated list of attributes.
----   - `bg`: The palette index for the background color.
----   - `fg`: The palette index for the foreground color.
----   - `sp`: The palette color index for the `guisp` highlight argument.
---- @param t table A table with the highlight properties.
---- @return table hi_val The highlight value for `bufferline.nvim` groups.
 M.hi_val = function(t)
   local p = require'sopa'.palette
   t = vim.tbl_deep_extend('force', {at = 'NONE', bg = -1, fg = -1, sp = -1}, t)
   return {gui = t.at, guibg = p[t.bg], guifg = p[t.fg], guisp = p[t.sp]}
 end
 
---- The table containing the groups to highlight `bufferline.nvim`.
----
---- This may be used as value for the `highlights` field in the table passed as
---- argument to the `setup` function from the `bufferline` module.
-M.groups = {
+M.hi_groups = {
   background = M.hi_val{bg = 2, fg = 6},
   buffer_selected = M.hi_val{at = 'bold,italic', bg = 0, fg = 7},
   buffer_visible = M.hi_val{at = 'bold,italic', bg = 0, fg = 6},

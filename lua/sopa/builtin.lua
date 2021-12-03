@@ -1,9 +1,6 @@
---- Module for default highlight groups.
 local M = {}
 
---- A table which each field stands for the name of the group to be highlighted
---- and the field value stands for the highlight arguments.
-M.groups = {
+M.hi_groups = {
   Character = {fg = 11},
   ColorColumn = {bg = 1},
   Comment = {fg = 6},

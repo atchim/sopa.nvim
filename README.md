@@ -4,7 +4,7 @@
 
 > Uma Delícia
 
-A GUI-only dark colorscheme for [Neovim](https://neovim.io).
+A GUI-only dark color scheme for [Neovim](https://neovim.io).
 
 ## Features
 

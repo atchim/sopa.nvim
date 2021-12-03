@@ -1,5 +1,9 @@
-# Sopa de To-Do
+# Sopa de Mamaco's To-Do List
 
 ## To Do
 
-- [ ] `doc` Write API documentation.
+- [ ] Add screenshots.
+
+## Done
+
+- [x] `doc` Write API documentation.
