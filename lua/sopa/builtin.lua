@@ -1,6 +1,6 @@
 local M = {}
 
-M.hi_groups = {
+M.groups = {
   Character = {fg = 11},
   ColorColumn = {bg = 1},
   Comment = {fg = 6},

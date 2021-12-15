@@ -19,14 +19,12 @@ M.hi = function(group, prop)
     prop.sp = -1
   end
 
-  local palette = M.palette
-
   cmd(
     'hi '..group
     ..' gui='..prop.at
-    ..' guibg='..palette[prop.bg]
-    ..' guifg='..palette[prop.fg]
-    ..' guisp='..palette[prop.sp]
+    ..' guibg='..M.palette[prop.bg]
+    ..' guifg='..M.palette[prop.fg]
+    ..' guisp='..M.palette[prop.sp]
   )
 end
 
@@ -34,7 +32,7 @@ M.hi_groups = function(groups)
   for group, prop in pairs(groups) do M.hi(group, prop) end
 end
 
-M.init = function()
+M.load = function()
   local cmd = vim.cmd
   if not vim.opt.termguicolors:get() then
     cmd[[echoerr "'termguicolors' is not set for 'sopa.nvim'"]]
@@ -45,8 +43,8 @@ M.init = function()
   if vim.fn.exists'syntax_on' then cmd'syntax reset' end
   vim.g.colors_name = 'sopa'
 
-  M.hi_groups(require'sopa.builtin'.hi_groups)
-  require'sopa.term'.init()
+  M.hi_groups(require'sopa.builtin'.groups)
+  require'sopa.term'.set_vars()
 end
 
 M.palette = {

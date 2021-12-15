@@ -38,21 +38,28 @@ SUPPORTED PLUGINS                                                *sopa-plugins*
 
 BUFFERLINE.NVIM                                               *sopa-bufferline*
 
-The highlight definitions for |bufferline| are defined in module
+The highlight definitions for |bufferline.nvim| are defined in module
 `sopa.bufferline`. The following example shows how it can be used.
 >
   lua << END
   require'bufferline'.setup{
-    highlights = require'sopa.bufferline'.hi_groups
+    highlights = require'sopa.bufferline'.groups
   }
   END
+<
+NVIM-TREE.LUA                                                       *sopa-tree*
+
+The highlight definitions for |nvim-tree.lua| are defined in module
+`sopa.tree`. The following example shows how it can be used.
+>
+  lua require'sopa.tree'.hi()
 <
 NVIM-TREESITTER                                               *sopa-treesitter*
 
 The highlight definitions for |nvim-treesitter| are defined in module
 `sopa.treesitter`. The following example shows how it can be used.
 >
-  lua require'sopa.treesitter'.init()
+  lua require'sopa.treesitter'.hi()
 <
 =============================================================================
 API                                                                  *sopa-api*
@@ -82,13 +89,13 @@ Root module containing the color palette and functions to highlight groups.
 
   {groups} must be a table which its fields stands for the name of the group
   to be highlighted and the value of each field stands for the {prop}
-  parameter from the |sopa.init| function.
+  parameter from the |sopa.hi| function.
 
   Parameters~
     {groups}  table  Group table.
 
-                                                                    *sopa.init*
-`sopa`.init()
+                                                                    *sopa.load*
+`sopa`.load()
   Set the `Sopa de Mamaco` color scheme. If 'termguicolors' is not set, no
   changes will be made and an error message will be outputted.
 
@@ -110,8 +117,8 @@ BUILTIN HIGHLIGHT GROUPS SUBMODULE                           *sopa-api-builtin*
 
 Module containing definitions for the |nvim|'s builtin highlight groups.
 
-                                                       *sopa.builtin.hi_groups*
-`sopa.builtin`.hi_groups
+                                                          *sopa.builtin.groups*
+`sopa.builtin`.groups
   Table which each field stands for the name of the group to be highlighted
   and the field value stands for the highlight arguments.
 
@@ -122,10 +129,10 @@ Module containing definitions for the |nvim|'s builtin highlight groups.
 
 TERMINAL COLORS SUBMODULE                                       *sopa-api-term*
 
-Module for defining colors the the |nvim|'s builtin |terminal-emulator|.
+Module for defining colors to the |nvim|'s builtin |terminal-emulator|.
 
-                                                               *sopa.term.init*
-`sopa.term`.init()
+                                                           *sopa.term.set_vars*
+`sopa.term`.set_vars()
   Set the |terminal| color variables.
 
   See Also~
@@ -136,8 +143,8 @@ BUFFERLINE.NVIM PLUGIN SUBMODULE                          *sopa-api-bufferline*
 Module for the |bufferline.nvim| plugin. See the usage of this module in
 |sopa-bufferline|.
 
-                                                    *sopa.bufferline.hi_groups*
-`sopa.bufferline`.hi_groups
+                                                       *sopa.bufferline.groups*
+`sopa.bufferline`.groups
   The table containing the groups to highlight |bufferline.nvim|.
 
   This may be used as value for the `highlights` field in the table passed as
@@ -145,7 +152,7 @@ Module for the |bufferline.nvim| plugin. See the usage of this module in
 
   See Also~
     - |bufferline-highlights|
-    - |bufferfline-settings|
+    - |bufferline-settings|
     - |sopa-bufferline|
 
                                                        *sopa.bufferline.hi_val*
@@ -168,23 +175,37 @@ Module for the |bufferline.nvim| plugin. See the usage of this module in
   Return~
     {hi_val}  table  Highlight value for |bufferline.nvim| groups.
 
+NVIM-TREE.LUA PLUGIN SUBMODULE                                  *sopa-api-tree*
+
+Module for highlighting groups for |nvim-tree.lua|. See the usage of this
+module in |sopa-tree|.
+
+                                                             *sopa.tree.groups*
+`sopa.tree`.groups
+  Table containing highlight groups for |nvim-tree.lua||.
+
+  See Also~
+    - |nvim-tree-highlight|
+
+                                                                 *sopa.tree.hi*
+`sopa.tree`.hi()
+  Highlight the groups for |nvim-tree.lua|.
+
 NVIM-TREESITTER PLUGIN SUBMODULE                          *sopa-api-treesitter*
 
-Module for highlighting groups for |nvim-treesitter|.
+Module for highlighting groups for |nvim-treesitter|. See the usage of this
+module in |sopa-treesitter|.
 
-                                                    *sopa.treesitter.hi_groups*
-`sopa.treesitter`.hi_groups
+                                                       *sopa.treesitter.groups*
+`sopa.treesitter`.groups
   Table containing highlight groups for |nvim-treesitter|.
 
   See Also~
     - |nvim-treesitter-highlights|
 
-                                                         *sopa.treesitter.init*
-`sopa.treesitter`.init()
+                                                           *sopa.treesitter.hi*
+`sopa.treesitter`.hi()
   Highlight the groups for |nvim-treesitter|.
-
-  See Also~
-    - |sopa.treesitter.hi_groups|
 
 =============================================================================
 vim:ft=help:norl:nospell:tw=77

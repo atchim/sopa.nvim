@@ -6,7 +6,7 @@ M.hi_val = function(t)
   return {gui = t.at, guibg = p[t.bg], guifg = p[t.fg], guisp = p[t.sp]}
 end
 
-M.hi_groups = {
+M.groups = {
   background = M.hi_val{bg = 2, fg = 6},
   buffer_selected = M.hi_val{at = 'bold,italic', bg = 0, fg = 7},
   buffer_visible = M.hi_val{at = 'bold,italic', bg = 0, fg = 6},
