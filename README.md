@@ -1,8 +1,8 @@
 # Sopa de Mamaco
 
-![Palette](palette-block.png)
+![Palette](palette.png)
 
-> Uma Delícia
+> Uma delícia
 
 A GUI-only dark color scheme for [Neovim](https://neovim.io).
 
