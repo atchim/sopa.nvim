@@ -47,6 +47,13 @@ The highlight definitions for |bufferline.nvim| are defined in module
   }
   END
 <
+COPILOT.VIM                                                      *sopa-copilot*
+
+The highlight definitions for |copilot.vim| are defined in module
+`sopa.copilot`. The following example shows how it can be used.
+>
+  lua require'sopa.copilot'.hi()
+
 NVIM-TREE.LUA                                                       *sopa-tree*
 
 The highlight definitions for |nvim-tree.lua| are defined in module
@@ -174,6 +181,22 @@ Module for the |bufferline.nvim| plugin. See the usage of this module in
 
   Return~
     {hi_val}  table  Highlight value for |bufferline.nvim| groups.
+
+COPILOT.VIM PLUGIN SUBMODULE                                 *sopa-api-copilot*
+
+Module for highlighting groups for |copilot.vim|. See the usage of this
+module in |sopa-copilot|.
+
+                                                          *sopa.copilot.groups*
+`sopa.copilot`.groups
+  Table containing highlight groups for |copilot.vim||.
+
+  See Also~
+    - |copilot-highlighting|
+
+                                                              *sopa.copilot.hi*
+`sopa.copilot`.hi()
+  Highlight the groups for |copilot.vim|.
 
 NVIM-TREE.LUA PLUGIN SUBMODULE                                  *sopa-api-tree*
 
