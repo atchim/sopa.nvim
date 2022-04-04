@@ -1,70 +1,47 @@
-local M = {}
-
-M.hi = function(group, prop)
-  local cmd = vim.cmd
-
-  if type(prop) == 'string' then
-    cmd('hi! link '..group..' '..prop)
-    return
+local api = vim.api
+local cmd = vim.cmd
+local function hi_groups(groups)
+  for group, prop in pairs(groups) do
+    local t = type(prop)
+    local _1_ = t
+    if (_1_ == "string") then
+      cmd(("hi! link " .. group .. " " .. prop))
+    elseif (_1_ == "table") then
+      api.nvim_set_hl(0, group, prop)
+    elseif true then
+      local _ = _1_
+      error(("invalid group property type: " .. t))
+    else
+    end
   end
-
-  prop = vim.tbl_deep_extend(
-    'force',
-    {at = 'NONE', bg = -1, fg = -1, sp = -1},
-    prop
-  )
-
-  if prop.sp ~= -1 and vim.fn.has'gui_running' == 0 then
-    prop.fg = prop.sp
-    prop.sp = -1
+  return nil
+end
+local function load_color_scheme()
+  if not (vim.opt.termguicolors):get() then
+    error("`termguicolors` not set")
+  else
   end
-
-  cmd(
-    'hi '..group
-    ..' gui='..prop.at
-    ..' guibg='..M.palette[prop.bg]
-    ..' guifg='..M.palette[prop.fg]
-    ..' guisp='..M.palette[prop.sp]
-  )
-end
-
-M.hi_groups = function(groups)
-  for group, prop in pairs(groups) do M.hi(group, prop) end
-end
-
-M.load = function()
-  local cmd = vim.cmd
-  if not vim.opt.termguicolors:get() then
-    cmd[[echoerr "'termguicolors' is not set for 'sopa.nvim'"]]
-    return
+  cmd("hi clear")
+  if vim.fn.exists("syntax") then
+    cmd("syntax reset")
+  else
   end
-
-  cmd'hi clear'
-  if vim.fn.exists'syntax_on' then cmd'syntax reset' end
-  vim.g.colors_name = 'sopa'
-
-  M.hi_groups(require'sopa.builtin'.groups)
-  require'sopa.term'.set_vars()
+  vim.g.colors_name = "sopa"
+  do
+    local _let_5_ = require("sopa.vanilla")
+    local groups = _let_5_["groups"]
+    local term_colors = _let_5_["term_colors"]
+    hi_groups(groups)
+    for var_, color in pairs(term_colors) do
+      vim.g[var_] = color
+    end
+  end
+  local config = require("sopa.config")
+  for plugin, _ in pairs(config.enabled_plugins) do
+    local _let_6_ = require(("sopa.plugins." .. plugin))
+    local setup = _let_6_["setup"]
+    setup()
+  end
+  return nil
 end
-
-M.palette = {
-  [-1] = 'NONE',
-  [0] = '#080808',
-  [1] = '#0c0c0c',
-  [2] = '#121212',
-  [3] = '#1a1a1a',
-  [4] = '#252525',
-  [5] = '#383838',
-  [6] = '#5a5a5a',
-  [7] = '#959595',
-  [8] = '#ff5b5b',
-  [9] = '#bc8f05',
-  [10] = '#54a900',
-  [11] = '#00ad2b',
-  [12] = '#00a7a7',
-  [13] = '#6b90ff',
-  [14] = '#ba74ff',
-  [15] = '#fc4ad0',
-}
-
-return M
+return {hi_groups = hi_groups, load_color_scheme = load_color_scheme}

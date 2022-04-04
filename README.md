@@ -39,5 +39,6 @@ A GUI-only dark color scheme for [Neovim](https://neovim.io).
 
 - [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 - [copilot.vim](https://github.com/github/copilot.vim)
+- [leap.nvim](https://github.com/ggandor/leap.nvim)
 - [nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua)
 - [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)

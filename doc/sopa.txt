@@ -1,8 +1,6 @@
-*sopa.txt*                         Uma Delícia
+*sopa.txt*           A |GUI|-only dark color scheme for |nvim|
 
-`Sopa de Mamaco` is a |GUI|-only dark color scheme for |nvim|.
-
-=============================================================================
+===============================================================================
 FEATURES                                                        *sopa-features*
 
 - Dark theme.
@@ -11,7 +9,7 @@ FEATURES                                                        *sopa-features*
 - Foreground colors have the same lightness.
 - Similar colors have similar meanings.
 
-=============================================================================
+===============================================================================
 COLORS                                                            *sopa-colors*
 >
   | #  | HTML    | HUE    | L*    |
@@ -33,202 +31,123 @@ COLORS                                                            *sopa-colors*
   | 14 | #ba74ff | 270.22 | 61.78 |
   | 15 | #fc4ad0 | 314.83 | 61.78 |
 <
-=============================================================================
+===============================================================================
 SUPPORTED PLUGINS                                                *sopa-plugins*
 
-BUFFERLINE.NVIM                                               *sopa-bufferline*
+- |bufferline.nvim|
+- |copilot.vim|
+- |nvim-tree.lua|
+- |nvim-treesitter|
 
-The highlight definitions for |bufferline.nvim| are defined in module
-`sopa.bufferline`. The following example shows how it can be used.
->
-  lua << END
-  require'bufferline'.setup{
-    highlights = require'sopa.bufferline'.groups
-  }
-  END
-<
-COPILOT.VIM                                                      *sopa-copilot*
-
-The highlight definitions for |copilot.vim| are defined in module
-`sopa.copilot`. The following example shows how it can be used.
->
-  lua require'sopa.copilot'.hi()
-
-NVIM-TREE.LUA                                                       *sopa-tree*
-
-The highlight definitions for |nvim-tree.lua| are defined in module
-`sopa.tree`. The following example shows how it can be used.
->
-  lua require'sopa.tree'.hi()
-<
-NVIM-TREESITTER                                               *sopa-treesitter*
-
-The highlight definitions for |nvim-treesitter| are defined in module
-`sopa.treesitter`. The following example shows how it can be used.
->
-  lua require'sopa.treesitter'.hi()
-<
-=============================================================================
+===============================================================================
 API                                                                  *sopa-api*
 
-ROOT MODULE                                                     *sopa-api-root*
+SOPA                                                            *sopa-api-sopa*
 
-Root module containing the color palette and functions to highlight groups.
+`sopa`                                                                   *sopa*
+  Table containing functions for both highlighting groups and loading this
+  color scheme.
 
-                                                                      *sopa.hi*
-`sopa`.hi({group}, {prop})
-  Helper function to highlight a group with colors from this palette.
-
-  If {prop} is a string, {group} will be linked to {prop}. Otherwise, if it
-  is a table, it may contain the following fields:
-    - `at`: A string which is a coma-separated list of attributes.
-    - `bg`: The palette index for the background color.
-    - `fg`: The palette index for the foreground color.
-    - `sp`: The palette color index for the `guisp` highlight argument.
-
-  Parameters~
-    {group}  string         Name of the group to be highlighted.
-    {prop}   string, table  Link group or highlight properties.
-
-                                                               *sopa.hi_groups*
-`sopa`.hi_groups({groups})
+`sopa`.hi_groups({groups})                                   *sopa.hi_groups()*
   Helper function to highlight groups.
 
-  {groups} must be a table which its fields stands for the name of the group
-  to be highlighted and the value of each field stands for the {prop}
-  parameter from the |sopa.hi| function.
+  Parameters~
+    {groups}  `table` Each field of this table must be a string with the name
+                    of the group to be highlighted and the values must be a
+                    table with fields and values set according to the {val}
+                    parameter from |nvim_set_hl()|.
+
+  See Also~
+    |nvim_set_hl()|
+
+`sopa`.load_color_scheme()                           *sopa.load_color_scheme()*
+  Load the Sopa de Mamaco color scheme.
+
+  If 'termguicolors' is not set, no changes will be made to the color groups
+  and an error message will be outputted.
+
+CONFIGURATIONS                                                *sopa-api-config*
+
+`sopa.config`                                                     *sopa.config*
+  Table for getting and setting settings this color scheme.
+
+  Each setting may have their value set to `nil` in addition to its possible
+  values. By setting to `nil`, the setting will be restored to their default
+  value.
+
+`sopa.config`.enabled_plugins                     *sopa.config.enabled_plugins*
+  - Type: `table`
+  - Default Value: `{}`
+
+  Get or set which plugin will have their highlight groups set by this color
+  scheme.
+
+  It must be a table in which each indexed value must be a string with the name
+  of the plugin. The following list show the valid plugin names.
+    - `bufferline`
+    - `copilot`
+    - `leap`
+    - `nvim-tree`
+    - `treesitter`
+
+COLOR PALETTE                                                *sopa-api-palette*
+
+`sopa.palette`                                                   *sopa.palette*
+  Table with utilities for setting colors for this colors scheme.
+
+`sopa.palette`.hex({i}) -> {rgb}                           *sopa.palette.hex()*
+  Return string in the `#rrggbb` format for a color at index {i} from the color
+  palette.
+
+  NOTE: If {i} is `-1` it will return `"NONE"` as defined in
+        |sopa.palette.palette|.
 
   Parameters~
-    {groups}  table  Group table.
+    {i} `number`  Index of the color from the palette to get the color string.
 
-                                                                    *sopa.load*
-`sopa`.load()
-  Set the `Sopa de Mamaco` color scheme. If 'termguicolors' is not set, no
-  changes will be made and an error message will be outputted.
+  Return~
+    {rgb} `string`  Color in the `#rrggbb` format.
 
-                                                                 *sopa.palette*
-`sopa`.palette
-  A table containing the colors used in this color scheme.
+  See Also~
+    - |gui-colors|
+    - |sopa-colors|
+    - |sopa.palette.palette|
+
+`sopa.palette`.palette                                   *sopa.pelette.palette*
+  Table containing colors for this color scheme.
 
   Each color may be accessed through its index, which ranges from -1 to 15
   where:
-    - -1 is the index of the `NONE` attribute.
-    - 0 up to 7 are the indexes of the background colors sorted by its
+    - `-1` is the index for the `"NONE"` attribute.
+    - `0` up to `7` are the indexes of the background colors sorted by their
       lightness.
-    - 8 up to 15 are the indexes of the foreground colors sorted by its HUE.
+    - `8` up to `15` are the indexes of the foreground colors sorted by
+      their HUE.
 
   See Also~
     - |sopa-colors|
 
-BUILTIN HIGHLIGHT GROUPS SUBMODULE                           *sopa-api-builtin*
+VANILLA                                                      *sopa-api-vanilla*
 
-Module containing definitions for the |nvim|'s builtin highlight groups.
+`sopa.vanilla`                                                   *sopa.vanilla*
+  Table containing highlight groups and terminal color variables for vanilla
+  |nvim|.
 
-                                                          *sopa.builtin.groups*
-`sopa.builtin`.groups
-  Table which each field stands for the name of the group to be highlighted
-  and the field value stands for the highlight arguments.
-
-  See Also~
-    - |highlight-groups|
-    - |sopa.hi|
-    - |sopa.hi_groups|
-
-TERMINAL COLORS SUBMODULE                                       *sopa-api-term*
-
-Module for defining colors to the |nvim|'s builtin |terminal-emulator|.
-
-                                                           *sopa.term.set_vars*
-`sopa.term`.set_vars()
-  Set the |terminal| color variables.
+`sopa.vanilla`.groups                                     *sopa.vanilla.groups*
+  Table with color definitions for builtin highlight groups. It follows the
+  definition of the {groups} parameter from |sopa.hi_groups()|.
 
   See Also~
+    - |group-name|
+    - |sopa.hi_groups()|
+
+`sopa.vanilla`.term_colors                           *sopa.vanilla.term_colors*
+  Table with colors for the |terminal-emulator|, as defined in
+  |terminal-config|.
+
+  See Also~
+    - |terminal-emulator|
     - |terminal-config|
 
-BUFFERLINE.NVIM PLUGIN SUBMODULE                          *sopa-api-bufferline*
-
-Module for the |bufferline.nvim| plugin. See the usage of this module in
-|sopa-bufferline|.
-
-                                                       *sopa.bufferline.groups*
-`sopa.bufferline`.groups
-  The table containing the groups to highlight |bufferline.nvim|.
-
-  This may be used as value for the `highlights` field in the table passed as
-  argument to the `setup` function from the `bufferline` module.
-
-  See Also~
-    - |bufferline-highlights|
-    - |bufferline-settings|
-    - |sopa-bufferline|
-
-                                                       *sopa.bufferline.hi_val*
-`sopa.bufferline`.hi_val({t})
-  Helper function to return the highlight value for groups used by
-  |bufferline.nvim|.
-
-  The highlight value returned by this function contains colors from this
-  palette.
-
-  {t} may have the following fields:
-    - `at`: A string which is a coma-separated list of attributes.
-    - `bg`: The palette index for the background color.
-    - `fg`: The palette index for the foreground color.
-    - `sp`: The palette color index for the `guisp` highlight argument.
-
-  Parameters~
-    {t}  table  Table with the highlight properties.
-
-  Return~
-    {hi_val}  table  Highlight value for |bufferline.nvim| groups.
-
-COPILOT.VIM PLUGIN SUBMODULE                                 *sopa-api-copilot*
-
-Module for highlighting groups for |copilot.vim|. See the usage of this
-module in |sopa-copilot|.
-
-                                                          *sopa.copilot.groups*
-`sopa.copilot`.groups
-  Table containing highlight groups for |copilot.vim||.
-
-  See Also~
-    - |copilot-highlighting|
-
-                                                              *sopa.copilot.hi*
-`sopa.copilot`.hi()
-  Highlight the groups for |copilot.vim|.
-
-NVIM-TREE.LUA PLUGIN SUBMODULE                                  *sopa-api-tree*
-
-Module for highlighting groups for |nvim-tree.lua|. See the usage of this
-module in |sopa-tree|.
-
-                                                             *sopa.tree.groups*
-`sopa.tree`.groups
-  Table containing highlight groups for |nvim-tree.lua||.
-
-  See Also~
-    - |nvim-tree-highlight|
-
-                                                                 *sopa.tree.hi*
-`sopa.tree`.hi()
-  Highlight the groups for |nvim-tree.lua|.
-
-NVIM-TREESITTER PLUGIN SUBMODULE                          *sopa-api-treesitter*
-
-Module for highlighting groups for |nvim-treesitter|. See the usage of this
-module in |sopa-treesitter|.
-
-                                                       *sopa.treesitter.groups*
-`sopa.treesitter`.groups
-  Table containing highlight groups for |nvim-treesitter|.
-
-  See Also~
-    - |nvim-treesitter-highlights|
-
-                                                           *sopa.treesitter.hi*
-`sopa.treesitter`.hi()
-  Highlight the groups for |nvim-treesitter|.
-
-=============================================================================
-vim:ft=help:norl:nospell:tw=77
+===============================================================================
+vim:ft=help:norl:nospell:tw=79
