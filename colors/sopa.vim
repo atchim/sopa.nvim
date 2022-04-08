@@ -1,1 +1,1 @@
-lua require'sopa'.load_color_scheme()
+lua require'sopa'.load()

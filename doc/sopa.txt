@@ -32,15 +32,41 @@ COLORS                                                            *sopa-colors*
   | 15 | #fc4ad0 | 314.83 | 61.78 |
 <
 ===============================================================================
+USAGE                                                              *sopa-usage*
+
+The following command can be used in order to apply the color scheme.
+>
+  colorscheme sopa
+<
+The following alternative command is a Lua equivalent.
+>
+  require'sopa'.load()
+<
+By running these commands, this color scheme will make changes based on the
+current configurations. For more information, see |sopa-config|.
+
+===============================================================================
 SUPPORTED PLUGINS                                                *sopa-plugins*
 
-- |bufferline.nvim|
+VIA ENABLED_PLUGINS SETTING                              *sopa-plugins-enabled*
+
 - |copilot.vim|
+- |leap.nvim|
 - |nvim-tree.lua|
 - |nvim-treesitter|
 
+VIA MANUAL CONFIGURATION                                  *sopa-plugins-manual*
+
+- |bufferline.nvim|
+>
+  require'bufferline'.setup{
+    highlights = require'sopa.plugins.bufferline'.highlights
+  }
+<
 ===============================================================================
 API                                                                  *sopa-api*
+
+NOTE: This is a WIP.
 
 SOPA                                                            *sopa-api-sopa*
 
@@ -52,43 +78,44 @@ SOPA                                                            *sopa-api-sopa*
   Helper function to highlight groups.
 
   Parameters~
-    {groups}  `table` Each field of this table must be a string with the name
-                    of the group to be highlighted and the values must be a
-                    table with fields and values set according to the {val}
-                    parameter from |nvim_set_hl()|.
+    {groups} `table`
+      Each field of this table stands for the group to be highlighted and the
+      values must be a table with fields and values set according to the {val}
+      parameter from |nvim_set_hl()|.
 
   See Also~
     |nvim_set_hl()|
 
-`sopa`.load_color_scheme()                           *sopa.load_color_scheme()*
+`sopa`.load()                                                     *sopa.load()*
   Load the Sopa de Mamaco color scheme.
 
   If 'termguicolors' is not set, no changes will be made to the color groups
   and an error message will be outputted.
 
-CONFIGURATIONS                                                *sopa-api-config*
+CONFIGURATIONS                                  *sopa-api-config* *sopa-config*
 
 `sopa.config`                                                     *sopa.config*
-  Table for getting and setting settings this color scheme.
+  Table for getting and setting options for this color scheme.
 
-  Each setting may have their value set to `nil` in addition to its possible
-  values. By setting to `nil`, the setting will be restored to their default
-  value.
+  Each field of this table stands for a setting. Each setting may have their
+  value set to `nil` in addition to its possible values. By setting to `nil`,
+  the setting will be restored to their default value.
 
 `sopa.config`.enabled_plugins                     *sopa.config.enabled_plugins*
   - Type: `table`
   - Default Value: `{}`
 
-  Get or set which plugin will have their highlight groups set by this color
-  scheme.
+  Get or set which plugins will have their highlight groups set by this color
+  scheme out-of-the-box.
 
-  It must be a table in which each indexed value must be a string with the name
-  of the plugin. The following list show the valid plugin names.
-    - `bufferline`
-    - `copilot`
-    - `leap`
-    - `nvim-tree`
-    - `treesitter`
+  It must be a list, or technically a table indexed by numbers, in which each
+  indexed value must be a string with the name of the plugin. The following
+  list show the valid plugin names.
+  
+  - `copilot`
+  - `leap`
+  - `nvim-tree`
+  - `treesitter`
 
 COLOR PALETTE                                                *sopa-api-palette*
 
@@ -100,13 +127,15 @@ COLOR PALETTE                                                *sopa-api-palette*
   palette.
 
   NOTE: If {i} is `-1` it will return `"NONE"` as defined in
-        |sopa.palette.palette|.
+  |sopa.palette.palette|.
 
   Parameters~
-    {i} `number`  Index of the color from the palette to get the color string.
+    {i} `number`
+      Index of the color from the palette to get the color string.
 
   Return~
-    {rgb} `string`  Color in the `#rrggbb` format.
+    {rgb} `string`
+      Color in the `#rrggbb` format.
 
   See Also~
     - |gui-colors|

@@ -1,3 +1,6 @@
+; Configurations for `nvim-treesitter`, the Tree-Sitter implementation.
+; https://github.com/nvim-treesitter/nvim-treesitter
+
 (import-macros {: hex} :fnl.sopa.palette)
 
 (local groups
@@ -5,8 +8,9 @@
     :TSNote {:fg (hex 12) :bold true :reverse true}})
 
 (fn setup []
-  "Setup colors for `nvim-treesitter` plugin"
-  (let [{: hi_groups} (require :sopa)]
-    (hi_groups groups)))
+  "Setup highlight groups."
+  (local {: hi_groups} (require :sopa))
+  (hi_groups groups))
 
-{: groups : setup}
+{ : groups
+  : setup}

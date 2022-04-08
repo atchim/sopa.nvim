@@ -16,7 +16,7 @@ local function hi_groups(groups)
   end
   return nil
 end
-local function load_color_scheme()
+local function load()
   if not (vim.opt.termguicolors):get() then
     error("`termguicolors` not set")
   else
@@ -32,16 +32,12 @@ local function load_color_scheme()
     local groups = _let_5_["groups"]
     local term_colors = _let_5_["term_colors"]
     hi_groups(groups)
-    for var_, color in pairs(term_colors) do
-      vim.g[var_] = color
+    for name, color in pairs(term_colors) do
+      vim.g[name] = color
     end
   end
-  local config = require("sopa.config")
-  for plugin, _ in pairs(config.enabled_plugins) do
-    local _let_6_ = require(("sopa.plugins." .. plugin))
-    local setup = _let_6_["setup"]
-    setup()
-  end
-  return nil
+  local _let_6_ = require("sopa.plugins")
+  local setup = _let_6_["setup"]
+  return setup()
 end
-return {hi_groups = hi_groups, load_color_scheme = load_color_scheme}
+return {hi_groups = hi_groups, load = load}

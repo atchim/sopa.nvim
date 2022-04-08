@@ -1,7 +1,10 @@
-FNL = $(shell find fnl/ -type f -name '*.fnl')
-LUA = $(patsubst fnl/%.fnl, lua/%.lua, $(FNL))
+src = $(shell find fnl/ -type f -name '*.fnl')
+out = $(patsubst fnl/%.fnl, lua/%.lua, $(src))
 
-all: $(LUA)
+all: $(out)
+
+clean: lua
+	rm -rf $<
 
 lua/%.lua: fnl/%.fnl
 	mkdir -p $(dir $@)

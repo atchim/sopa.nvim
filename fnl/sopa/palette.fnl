@@ -1,3 +1,5 @@
+; Palette Stuff
+
 (local palette
   { -1 :NONE
     00 :#080808
@@ -17,6 +19,9 @@
     14 :#ba74ff
     15 :#fc4ad0})
 
-(fn hex [i] (. palette i))
+(fn hex [i]
+  "Return string in `#rrggbb` format of color at index `i` of palette."
+  (. palette i))
 
-{: hex : palette}
+{ : hex
+  : palette}

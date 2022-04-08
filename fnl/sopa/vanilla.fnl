@@ -1,3 +1,5 @@
+; Color definitions for vanilla Neovim.
+
 (import-macros {: hex} :fnl.sopa.palette)
 
 (local groups
@@ -71,7 +73,7 @@
     :Whitespace {:fg (hex 5)}
     :WildMenu {:bg (hex 0) :fg (hex 6) :bold true}})
 
-(local term-colors
+(local term_colors
   { :terminal_color_0 (hex 00)
     :terminal_color_1 (hex 08)
     :terminal_color_2 (hex 11)
@@ -89,4 +91,5 @@
     :terminal_color_14 (hex 12)
     :terminal_color_15 (hex 07)})
 
-{: groups :term_colors term-colors}
+{ : groups
+  : term_colors}
