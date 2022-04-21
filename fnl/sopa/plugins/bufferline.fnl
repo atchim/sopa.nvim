@@ -1,65 +1,65 @@
-; Configurations for `bufferline.nvim`, the buffer line plugin.
-; https://github.com/akinsho/bufferline.nvim
-; NOTE: This configuration must explicitly be set by the user.
+(import-macros
+  {: call} :fnl.sopa.macros
+  {: hex} :fnl.sopa.palette)
 
-(macro hi [t]
-  "Helper to generate a proper value for a key of the highlights table."
-  (local {: hex} (require :fnl.sopa.palette))
-  `{:gui ,(or t.gui :NONE)
-    :guibg ,(hex (or t.bg -1))
-    :guifg ,(hex (or t.fg -1))
-    :guisp ,(hex (or t.sp -1))})
+(local groups
+  { :BufferLineBackground {:bg (hex 2) :fg (hex 6)}
+    :BufferLineBufferSelected {:bg (hex 0) :fg (hex 7) :bold true}
+    :BufferLineBufferVisible {:bg (hex 0) :fg (hex 6) :bold true}
+    :BufferLineCloseButton {:bg (hex 2) :fg (hex 8) :bold true}
+    :BufferLineCloseButtonSelected {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineCloseButtonVisible {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineDiagnostic {:bg (hex 2) :fg (hex 9) :bold true}
+    :BufferLineDiagnosticSelected {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineDiagnosticVisible {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineDuplicate {:bg (hex 2) :fg (hex 6)}
+    :BufferLineDuplicateSelected {:bg (hex 0) :fg (hex 7)}
+    :BufferLineDuplicateVisible {:bg (hex 0) :fg (hex 6)}
+    :BufferLineError {:bg (hex 2) :fg (hex 8) :bold true}
+    :BufferLineErrorDiagnostic {:bg (hex 2) :fg (hex 8) :bold true}
+    :BufferLineErrorDiagnosticSelected {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineErrorDiagnosticVisible {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineErrorSelected {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineErrorVisible {:bg (hex 0) :fg (hex 8) :bold true}
+    :BufferLineFill {:bg (hex 1)}
+    :BufferLineHint {:bg (hex 2) :fg (hex 9) :bold true}
+    :BufferLineHintDiagnostic {:bg (hex 2) :fg (hex 9) :bold true}
+    :BufferLineHintDiagnosticSelected {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineHintDiagnosticVisible {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineHintSelected {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineHintVisible {:bg (hex 0) :fg (hex 9) :bold true}
+    :BufferLineIndicatorSelected {:bg (hex 0) :fg (hex 7) :bold true}
+    :BufferLineInfo {:bg (hex 2) :fg (hex 11) :bold true}
+    :BufferLineInfoDiagnostic {:bg (hex 2) :fg (hex 11) :bold true}
+    :BufferLineInfoDiagnosticSelected {:bg (hex 0) :fg (hex 11) :bold true}
+    :BufferLineInfoDiagnosticVisible {:bg (hex 0) :fg (hex 11) :bold true}
+    :BufferLineInfoSelected {:bg (hex 0) :fg (hex 11) :bold true}
+    :BufferLineInfoVisible {:bg (hex 0) :fg (hex 11) :bold true}
+    :BufferLineModified {:bg (hex 2) :fg (hex 11)}
+    :BufferLineModifiedSelected {:bg (hex 0) :fg (hex 11)}
+    :BufferLineModifiedVisible {:bg (hex 0) :fg (hex 11)}
+    :BufferLineNumbers {:bg (hex 2) :fg (hex 6)}
+    :BufferLineNumbersSelected {:bg (hex 0) :fg (hex 7) :bold true}
+    :BufferLineNumbersVisible {:bg (hex 0) :fg (hex 6) :bold true}
+    :BufferLinePick {:bg (hex 2) :fg (hex 12) :bold true}
+    :BufferLinePickSelected {:bg (hex 0) :fg (hex 12) :bold true}
+    :BufferLinePickVisible {:bg (hex 0) :fg (hex 12) :bold true}
+    :BufferLineSeparator {:bg (hex 1) :fg (hex 1)}
+    :BufferLineSeparatorSelected {:bg (hex 1) :fg (hex 1)}
+    :BufferLineSeparatorVisible {:bg (hex 1) :fg (hex 1)}
+    :BufferLineTab {:bg (hex 2) :fg (hex 6)}
+    :BufferLineTabClose {:bg (hex 1) :fg (hex 8) :bold true}
+    :BufferLineTabSelected {:bg (hex 0) :fg (hex 7) :bold true}
+    :BufferLineWarning {:bg (hex 2) :fg (hex 10) :bold true}
+    :BufferLineWarningDiagnostic {:bg (hex 2) :fg (hex 10) :bold true}
+    :BufferLineWarningDiagnosticSelected {:bg (hex 0) :fg (hex 10) :bold true}
+    :BufferLineWarningDiagnosticVisible {:bg (hex 0) :fg (hex 10) :bold true}
+    :BufferLineWarningSelected {:bg (hex 0) :fg (hex 10) :bold true}
+    :BufferLineWarningVisible {:bg (hex 0) :fg (hex 10) :bold true}})
 
-(local highlights
-  { :background (hi {:bg 2 :fg 6})
-    :buffer_selected (hi {:bg 0 :fg 7 :gui "bold,italic"})
-    :buffer_visible (hi {:bg 0 :fg 6 :gui "bold,italic"})
-    :close_button (hi {:bg 2 :fg 8 :gui "bold"})
-    :close_button_selected (hi {:bg 0 :fg 8 :gui "bold"})
-    :close_button_visible (hi {:bg 0 :fg 8 :gui "bold"})
-    :diagnostic (hi {:bg 2 :fg 9 :gui "bold,italic"})
-    :diagnostic_selected (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :diagnostic_visible (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :duplicate (hi {:bg 2 :fg 6 :gui "italic"})
-    :duplicate_selected (hi {:bg 0 :fg 7 :gui "italic"})
-    :duplicate_visible (hi {:bg 0 :fg 6 :gui "italic"})
-    :error (hi {:bg 2 :fg 8 :gui "bold,italic"})
-    :error_diagnostic (hi {:bg 2 :fg 8 :gui "bold,italic"})
-    :error_diagnostic_selected (hi {:bg 0 :fg 8 :gui "bold,italic"})
-    :error_diagnostic_visible (hi {:bg 0 :fg 8 :gui "bold,italic"})
-    :error_selected (hi {:bg 0 :fg 8 :gui "bold,italic"})
-    :error_visible (hi {:bg 0 :fg 8 :gui "bold,italic"})
-    :fill (hi {:bg 1})
-    :hint (hi {:bg 2 :fg 9 :gui "bold,italic"})
-    :hint_diagnostic (hi {:bg 2 :fg 9 :gui "bold,italic"})
-    :hint_diagnostic_selected (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :hint_diagnostic_visible (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :hint_selected (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :hint_visible (hi {:bg 0 :fg 9 :gui "bold,italic"})
-    :indicator_selected (hi {:bg 0 :fg 7 :gui "bold"})
-    :info (hi {:bg 2 :fg 11 :gui "bold,italic"})
-    :info_diagnostic (hi {:bg 2 :fg 11 :gui "bold,italic"})
-    :info_diagnostic_selected (hi {:bg 0 :fg 11 :gui "bold,italic"})
-    :info_diagnostic_visible (hi {:bg 0 :fg 11 :gui "bold,italic"})
-    :info_selected (hi {:bg 0 :fg 11 :gui "bold,italic"})
-    :info_visible (hi {:bg 0 :fg 11 :gui "bold,italic"})
-    :modified (hi {:bg 2 :fg 11})
-    :modified_selected (hi {:bg 0 :fg 11})
-    :modified_visible (hi {:bg 0 :fg 11})
-    :pick (hi {:bg 2 :fg 12 :gui "bold,italic"})
-    :pick_selected (hi {:bg 0 :fg 12 :gui "bold,italic"})
-    :pick_visible (hi {:bg 0 :fg 12 :gui "bold,italic"})
-    :separator (hi {:bg 1 :fg 1})
-    :separator_selected (hi {:bg 1 :fg 1})
-    :separator_visible (hi {:bg 1 :fg 1})
-    :tab (hi {:bg 2 :fg 6})
-    :tab_close (hi {:bg 1 :fg 8 :gui "bold"})
-    :tab_selected (hi {:bg 0 :fg 7 :gui "bold"})
-    :warning (hi {:bg 2 :fg 10 :gui "bold,italic"})
-    :warning_diagnostic (hi {:bg 2 :fg 10 :gui "bold,italic"})
-    :warning_diagnostic_selected (hi {:bg 0 :fg 10 :gui "bold,italic"})
-    :warning_diagnostic_visible (hi {:bg 0 :fg 10 :gui "bold,italic"})
-    :warning_selected (hi {:bg 0 :fg 10 :gui "bold,italic"})
-    :warning_visible (hi {:bg 0 :fg 10 :gui "bold,italic"})})
+(fn init []
+  "Setup highlight groups."
+  (call :sopa :hi_groups groups))
 
-{: highlights}
+{ : groups
+  : init}

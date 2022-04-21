@@ -16,11 +16,8 @@ local function hi_groups(groups)
   end
   return nil
 end
-local function load()
-  if not (vim.opt.termguicolors):get() then
-    error("`termguicolors` not set")
-  else
-  end
+local function init()
+  assert((vim.opt.termguicolors):get(), "`termguicolors` not set")
   cmd("hi clear")
   if vim.fn.exists("syntax") then
     cmd("syntax reset")
@@ -28,16 +25,14 @@ local function load()
   end
   vim.g.colors_name = "sopa"
   do
-    local _let_5_ = require("sopa.vanilla")
-    local groups = _let_5_["groups"]
-    local term_colors = _let_5_["term_colors"]
+    local _let_4_ = require("sopa.vanilla")
+    local groups = _let_4_["groups"]
+    local term_colors = _let_4_["term_colors"]
     hi_groups(groups)
     for name, color in pairs(term_colors) do
       vim.g[name] = color
     end
   end
-  local _let_6_ = require("sopa.plugins")
-  local setup = _let_6_["setup"]
-  return setup()
+  return (require("sopa.plugins")).init()
 end
-return {hi_groups = hi_groups, load = load}
+return {hi_groups = hi_groups, init = init}

@@ -1,5 +1,4 @@
-; Basic Functions
-
+(import-macros {: call} :fnl.sopa.macros)
 (local api vim.api)
 (local cmd vim.cmd)
 
@@ -19,11 +18,11 @@
       :table (api.nvim_set_hl 0 group prop)
       _ (error (.. "invalid group property type: " t)))))
 
-(fn load []
+(fn init []
   "Load color scheme."
 
   ; Do technical stuff.
-  (when (not (vim.opt.termguicolors:get)) (error "`termguicolors` not set"))
+  (assert (vim.opt.termguicolors:get) "`termguicolors` not set")
   (cmd "hi clear")
   (when (vim.fn.exists :syntax) (cmd "syntax reset"))
   (set vim.g.colors_name :sopa)
@@ -35,8 +34,7 @@
       (tset vim.g name color)))
 
   ; Setup plugin stuff.
-  (let [{: setup} (require :sopa.plugins)]
-    (setup)))
+  (call :sopa.plugins :init))
 
 { : hi_groups
-  : load}
+  : init}

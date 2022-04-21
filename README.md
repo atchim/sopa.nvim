@@ -46,7 +46,7 @@ colorscheme sopa
 The following alternative command is a Lua equivalent.
 
 ```lua
-require'sopa'.load()
+require'sopa'.init()
 ```
 
 By running these commands, this color scheme will make changes based on the
@@ -76,29 +76,20 @@ It must be a list, or technically a table indexed by numbers, in which each
 indexed value must be a string with the name of the plugin. The following
 list show the valid plugin names.
 
+- `bufferline`
 - `copilot`
 - `leap`
+- `neo-tree`
 - `nvim-tree`
 - `treesitter`
 
 ## Supported Plugins
 
-### Via `enabled_plugins` Setting
-
+- [bufferline.nvim]
 - [copilot.vim]
 - [leap.nvim]
 - [nvim-tree.lua]
 - [nvim-treesitter]
-
-### Via Manual Configuration
-
-- [bufferline.nvim]
-
-  ```lua
-  require'bufferline'.setup{
-    highlights = require'sopa.plugins.bufferline'.highlights
-  }
-  ```
 
 [bufferline.nvim]: https://github.com/akinsho/bufferline.nvim
 [copilot.vim]: https://github.com/github/copilot.vim

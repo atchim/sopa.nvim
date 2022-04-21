@@ -8,7 +8,7 @@ local valid_plugins
 local function _2_(_, key)
   return error(("invalid plugin name: " .. key))
 end
-valid_plugins = setmetatable({copilot = true, leap = true, ["nvim-tree"] = true, treesitter = true}, {__index = _2_})
+valid_plugins = setmetatable({bufferline = true, copilot = true, leap = true, ["neo-tree"] = true, ["nvim-tree"] = true, treesitter = true}, {__index = _2_})
 local function enable_plugins(arg)
   local t = type(arg)
   local _3_ = t

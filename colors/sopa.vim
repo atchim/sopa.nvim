@@ -1,1 +1,1 @@
-lua require'sopa'.load()
+lua require'sopa'.init()

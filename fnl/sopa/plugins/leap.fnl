@@ -1,15 +1,12 @@
-; Configurations for Leap, the general purpose motion plugin.
-; https://github.com/ggandor/leap.nvim
-
 (import-macros {: hex} :fnl.sopa.palette)
-(macro augroup-name [] :sopa_leap)
+(macro augroup-name [] :sopa)
 
 (local groups
   { :LeapLabelPrimary {:bg (hex 10) :fg (hex 0) :bold true}
     :LeapLabelSecondary {:bg (hex 14) :fg (hex 0) :bold true}
     :LeapMatch {:bold true :underline true}})
 
-(fn setup []
+(fn init []
   "Set auto command to highlight groups when Leap start running."
   (local api vim.api)
   (api.nvim_create_augroup (augroup-name) {})
@@ -24,4 +21,4 @@
           (vim.api.nvim_del_augroup_by_name (augroup-name)))}))
 
 { : groups
-  : setup}
+  : init}

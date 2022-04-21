@@ -1,5 +1,3 @@
-; Color definitions for vanilla Neovim.
-
 (import-macros {: hex} :fnl.sopa.palette)
 
 (local groups

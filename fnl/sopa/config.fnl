@@ -1,5 +1,3 @@
-; Configurations for this color scheme.
-
 (local default-config
   (setmetatable
     {:enabled_plugins []}
@@ -9,8 +7,10 @@
 
 (local valid-plugins
   (setmetatable
-    { :copilot true
+    { :bufferline true
+      :copilot true
       :leap true
+      :neo-tree true
       :nvim-tree true
       :treesitter true}
     {:__index (fn [_ key] (error (.. "invalid plugin name: " key)))}))

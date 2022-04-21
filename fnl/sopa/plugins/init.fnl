@@ -1,10 +1,9 @@
-; Configurations for plugins.
+(import-macros {: call} :fnl.sopa.macros)
 
-(fn setup []
+(fn init []
   "Setup highlight groups for enabled plugins."
   (local config (require :sopa.config))
   (each [plugin _ (pairs (. config :enabled_plugins))]
-    (local {: setup} (require (.. :sopa.plugins. plugin)))
-    (setup)))
+    (call (.. :sopa.plugins. plugin) :init)))
 
-{: setup}
+{: init}

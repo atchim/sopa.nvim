@@ -1,13 +1,15 @@
-src = $(shell find fnl/ -type f -name '*.fnl')
-out = $(patsubst fnl/%.fnl, lua/%.lua, $(src))
+fd = $(wildcard $1$2) $(foreach d, $(wildcard $1*), $(call fd, $d/, $2))
+fnl-files = $(call fd, fnl/, *.fnl)
+lua-files = $(filter-out fnl/sopa/macros.fnl, $(fnl-files))
+lua-files := $(patsubst fnl/%.fnl, lua/%.lua, $(lua-files))
 
-all: $(out)
+all: $(lua-files)
 
 clean: lua
-	rm -rf $<
+	rm -fr $^
 
 lua/%.lua: fnl/%.fnl
-	mkdir -p $(dir $@)
+	@mkdir -p $(dir $@)
 	fennel -c $< > $@
 
-.PHONY: all
+.PHONY: all clean

@@ -1,5 +1,3 @@
-; Palette Stuff
-
 (local palette
   { -1 :NONE
     00 :#080808

@@ -40,7 +40,7 @@ The following command can be used in order to apply the color scheme.
 <
 The following alternative command is a Lua equivalent.
 >
-  require'sopa'.load()
+  require'sopa'.init()
 <
 By running these commands, this color scheme will make changes based on the
 current configurations. For more information, see |sopa-config|.
@@ -48,21 +48,13 @@ current configurations. For more information, see |sopa-config|.
 ===============================================================================
 SUPPORTED PLUGINS                                                *sopa-plugins*
 
-VIA ENABLED_PLUGINS SETTING                              *sopa-plugins-enabled*
-
+- |bufferline.nvim|
 - |copilot.vim|
 - |leap.nvim|
+- |neo-tree|
 - |nvim-tree.lua|
 - |nvim-treesitter|
 
-VIA MANUAL CONFIGURATION                                  *sopa-plugins-manual*
-
-- |bufferline.nvim|
->
-  require'bufferline'.setup{
-    highlights = require'sopa.plugins.bufferline'.highlights
-  }
-<
 ===============================================================================
 API                                                                  *sopa-api*
 
@@ -86,11 +78,12 @@ SOPA                                                            *sopa-api-sopa*
   See Also~
     |nvim_set_hl()|
 
-`sopa`.load()                                                     *sopa.load()*
-  Load the Sopa de Mamaco color scheme.
+`sopa`.init()                                                     *sopa.load()*
+  Init the Sopa de Mamaco color scheme.
 
-  If 'termguicolors' is not set, no changes will be made to the color groups
-  and an error message will be outputted.
+  This is the pure Lua equivalent for the `colorscheme sopa` command. If
+  'termguicolors' is not set, no changes will be made to the color groups and
+  an error message will be outputted.
 
 CONFIGURATIONS                                  *sopa-api-config* *sopa-config*
 
@@ -111,9 +104,11 @@ CONFIGURATIONS                                  *sopa-api-config* *sopa-config*
   It must be a list, or technically a table indexed by numbers, in which each
   indexed value must be a string with the name of the plugin. The following
   list show the valid plugin names.
-  
+
+  - `bufferline`
   - `copilot`
   - `leap`
+  - `neo-tree`
   - `nvim-tree`
   - `treesitter`
 
