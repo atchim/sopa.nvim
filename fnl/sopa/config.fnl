@@ -9,6 +9,7 @@
   (setmetatable
     { :bufferline true
       :copilot true
+      :indent-blankline true
       :leap true
       :neo-tree true
       :nvim-tree true
@@ -20,16 +21,19 @@
   (local t (type arg))
   (match t
     :nil (set user-config.enabled_plugins nil)
-    :table (let [tbl {}]
-      (each [_ plugin (ipairs arg)]
-        (. valid-plugins plugin) ; If plugin is not valid, should cause error.
-        (tset tbl plugin true))
-      (set user-config.enabled_plugins tbl))
+    :table
+      (let [tbl {}]
+        (each [_ plugin (ipairs arg)]
+          ; Make sure plugin name is valid.
+          (. valid-plugins plugin)
+          (tset tbl plugin true))
+        (set user-config.enabled_plugins tbl))
     _ (error (.. "`enabled_plugins` must be table or nil, got: " t))))
 
 (setmetatable {}
   { :__index user-config
-    :__newindex (fn [_ key val]
-      (match key
-        :enabled_plugins (enable-plugins val)
-        _ (error (.. "invalid setting: " key))))})
+    :__newindex
+      (fn [_ key val]
+        (match key
+          :enabled_plugins (enable-plugins val)
+          _ (error (.. "invalid setting: " key))))})
