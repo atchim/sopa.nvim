@@ -12,6 +12,10 @@
     :DiagnosticError {:fg (hex 8)}
     :DiagnosticHint {:fg (hex 9)}
     :DiagnosticInfo {:fg (hex 11)}
+    :DiagnosticUnderlineError {:sp (hex 8) :underline true}
+    :DiagnosticUnderlineHint {:sp (hex 9) :underline true}
+    :DiagnosticUnderlineInfo {:sp (hex 11) :underline true}
+    :DiagnosticUnderlineWarn {:sp (hex 10) :underline true}
     :DiagnosticWarn {:fg (hex 10)}
     :DiffAdd {:bg (hex 11) :fg (hex 0) :bold true}
     :diffAdded {:fg (hex 11)}
