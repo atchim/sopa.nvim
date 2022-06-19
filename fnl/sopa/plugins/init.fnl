@@ -1,3 +1,5 @@
+; TODO: Add support for `nvim-cmp`.
+
 (import-macros {: call} :fnl.sopa.macros)
 
 (fn init []

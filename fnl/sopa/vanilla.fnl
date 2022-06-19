@@ -73,7 +73,9 @@
     :Visual {:bg (hex 3)}
     :WarningMsg {:fg (hex 10) :bold true}
     :Whitespace {:fg (hex 5)}
-    :WildMenu {:bg (hex 0) :fg (hex 6) :bold true}})
+    :WildMenu {:bg (hex 0) :fg (hex 6) :bold true}
+    :WinBar {:bg (hex 2) :fg (hex 6) :bold true}
+    :WinBarNC :StatusLineNC})
 
 (local term_colors
   { :terminal_color_0 (hex 00)
