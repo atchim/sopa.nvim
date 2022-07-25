@@ -78,6 +78,7 @@ list show the valid plugin names.
 
 - `bufferline`
 - `copilot`
+- `indent-blankline`
 - `leap`
 - `neo-tree`
 - `nvim-tree`
@@ -87,12 +88,29 @@ list show the valid plugin names.
 
 - [bufferline.nvim]
 - [copilot.vim]
+- [indent-blankline.nvim]
 - [leap.nvim]
 - [nvim-tree.lua]
 - [nvim-treesitter]
+- [nvim-window-picker]
+
+  Colors has to be set manually, as shown in the following snippet.
+
+  ```lua
+  local config = {
+    autoselect_one = false,
+    include_current_win = true,
+    selection_chars = 'JKFLAHDSG',
+  }
+  local colors = require'sopa.plugins.window-picker'.colors
+  config = vim.tbl_deep_extend('force', config, colors)
+  require'window-picker'.setup(config)
+  ```
 
 [bufferline.nvim]: https://github.com/akinsho/bufferline.nvim
 [copilot.vim]: https://github.com/github/copilot.vim
+[indent-blankline.nvim]: https://github.com/lukas-reineke/indent-blankline.nvim
 [leap.nvim]: https://github.com/ggandor/leap.nvim
 [nvim-tree.lua]: https://github.com/kyazdani42/nvim-tree.lua
 [nvim-treesitter]: https://github.com/nvim-treesitter/nvim-treesitter
+[nvim-window-picker]: https://github.com/s1n7ax/nvim-window-picker

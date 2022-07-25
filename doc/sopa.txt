@@ -1,4 +1,4 @@
-*sopa.txt*           A |GUI|-only dark color scheme for |nvim|
+*sopa.txt*            |GUI|-only dark color scheme for |nvim|
 
 ===============================================================================
 FEATURES                                                        *sopa-features*
@@ -11,6 +11,7 @@ FEATURES                                                        *sopa-features*
 
 ===============================================================================
 COLORS                                                            *sopa-colors*
+
 >
   | #  | HTML    | HUE    | L*    |
   |----|---------|--------|-------|
@@ -31,17 +32,22 @@ COLORS                                                            *sopa-colors*
   | 14 | #ba74ff | 270.22 | 61.78 |
   | 15 | #fc4ad0 | 314.83 | 61.78 |
 <
+
 ===============================================================================
 USAGE                                                              *sopa-usage*
 
 The following command can be used in order to apply the color scheme.
+
 >
   colorscheme sopa
 <
+
 The following alternative command is a Lua equivalent.
+
 >
   require'sopa'.init()
 <
+
 By running these commands, this color scheme will make changes based on the
 current configurations. For more information, see |sopa-config|.
 
@@ -50,10 +56,25 @@ SUPPORTED PLUGINS                                                *sopa-plugins*
 
 - |bufferline.nvim|
 - |copilot.vim|
+- |indent-blankline|
 - |leap.nvim|
 - |neo-tree|
 - |nvim-tree.lua|
 - |nvim-treesitter|
+- nvim-window-picker
+
+  Colors has to be set manually, as shown in the following snippet.
+
+>
+    local config = {
+      autoselect_one = false,
+      include_current_win = true,
+      selection_chars = 'JKFLAHDSG',
+    }
+    local colors = require'sopa.plugins.window-picker'.colors
+    config = vim.tbl_deep_extend('force', config, colors)
+    require'window-picker'.setup(config)
+<
 
 ===============================================================================
 API                                                                  *sopa-api*
