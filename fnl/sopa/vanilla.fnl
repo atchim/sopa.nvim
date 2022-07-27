@@ -45,8 +45,8 @@
     :Number {:fg (hex 10)}
     :Pmenu {:bg (hex 1) :fg (hex 6)}
     :PmenuSBar {:bg (hex 2)}
-    :PmenuSel {:bg (hex 2) :fg (hex 7)}
-    :PmenuThumb {:bg (hex 3)}
+    :PmenuSel {:bg (hex 3)}
+    :PmenuThumb :PmenuSel
     :Preproc {:fg (hex 8)}
     :Question {:fg (hex 9) :bold true}
     :Search {:bg (hex 10) :fg (hex 0) :bold true}

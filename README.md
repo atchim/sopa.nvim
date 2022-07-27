@@ -77,6 +77,7 @@ indexed value must be a string with the name of the plugin. The following
 list show the valid plugin names.
 
 - `bufferline`
+- `cmp`
 - `copilot`
 - `indent-blankline`
 - `leap`
@@ -90,6 +91,7 @@ list show the valid plugin names.
 - [copilot.vim]
 - [indent-blankline.nvim]
 - [leap.nvim]
+- [nvim-cmp]
 - [nvim-tree.lua]
 - [nvim-treesitter]
 - [nvim-window-picker]
@@ -111,6 +113,7 @@ list show the valid plugin names.
 [copilot.vim]: https://github.com/github/copilot.vim
 [indent-blankline.nvim]: https://github.com/lukas-reineke/indent-blankline.nvim
 [leap.nvim]: https://github.com/ggandor/leap.nvim
+[nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
 [nvim-tree.lua]: https://github.com/kyazdani42/nvim-tree.lua
 [nvim-treesitter]: https://github.com/nvim-treesitter/nvim-treesitter
 [nvim-window-picker]: https://github.com/s1n7ax/nvim-window-picker

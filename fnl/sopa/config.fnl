@@ -8,6 +8,7 @@
 (local valid-plugins
   (setmetatable
     { :bufferline true
+      :cmp true
       :copilot true
       :indent-blankline true
       :leap true

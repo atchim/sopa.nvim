@@ -59,6 +59,7 @@ SUPPORTED PLUGINS                                                *sopa-plugins*
 - |indent-blankline|
 - |leap.nvim|
 - |neo-tree|
+- |nvim-cmp|
 - |nvim-tree.lua|
 - |nvim-treesitter|
 - nvim-window-picker
@@ -127,7 +128,9 @@ CONFIGURATIONS                                  *sopa-api-config* *sopa-config*
   list show the valid plugin names.
 
   - `bufferline`
+  - `cmp`
   - `copilot`
+  - `indent-blankline`
   - `leap`
   - `neo-tree`
   - `nvim-tree`
