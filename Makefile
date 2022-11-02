@@ -1,7 +1,6 @@
 fd = $(wildcard $1$2) $(foreach d, $(wildcard $1*), $(call fd, $d/, $2))
 fnl-files = $(call fd, fnl/, *.fnl)
-lua-files = $(filter-out fnl/sopa/macros.fnl, $(fnl-files))
-lua-files := $(patsubst fnl/%.fnl, lua/%.lua, $(lua-files))
+lua-files = $(patsubst fnl/%.fnl, lua/%.lua, $(fnl-files))
 
 all: $(lua-files)
 

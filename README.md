@@ -1,10 +1,8 @@
 # Sopa de Mamaco
 
-![Palette](palette.png)
-
 > Uma delícia.
 
-A GUI-only dark color scheme for [Neovim](https://neovim.io).
+A [GUI]-only dark color scheme for [Neovim].
 
 ## Features
 
@@ -16,6 +14,7 @@ A GUI-only dark color scheme for [Neovim](https://neovim.io).
 
 ## Colors
 
+<!-- TODO: Display colors in table cells. -->
 | #  | HTML    | HUE    | L\*   |
 |----|---------|--------|-------|
 |  0 | #080808 |   0    |  2.19 |
@@ -35,85 +34,20 @@ A GUI-only dark color scheme for [Neovim](https://neovim.io).
 | 14 | #ba74ff | 270.22 | 61.78 |
 | 15 | #fc4ad0 | 314.83 | 61.78 |
 
-## Usage
+## Integrations
 
-The following command can be used in order to apply the color scheme.
-
-```vim
-colorscheme sopa
-```
-
-The following alternative command is a Lua equivalent.
-
-```lua
-require'sopa'.init()
-```
-
-By running these commands, this color scheme will make changes based on the
-current configurations. For more information, see the
-[configurations](#configurations).
-
-## Configurations
-
-The configurations can be accessed through the `sopa.config` module that
-returns a table for getting and setting options for this color scheme.
-
-Each field of this table stands for a setting. Each setting may have their
-value set to `nil` in addition to its possible values. By setting to `nil`,
-the setting will be restored to their default value.
-
-The following subtopics addresses these settings.
-
-### `enabled_plugins`
-
-- Type: `table`
-- Default Value: `{}`
-
-Get or set which plugins will have their highlight groups set by this color
-scheme out-of-the-box.
-
-It must be a list, or technically a table indexed by numbers, in which each
-indexed value must be a string with the name of the plugin. The following
-list show the valid plugin names.
-
-- `bufferline`
-- `cmp`
-- `copilot`
-- `indent-blankline`
-- `leap`
-- `neo-tree`
-- `nvim-tree`
-- `treesitter`
-
-## Supported Plugins
-
-- [bufferline.nvim]
-- [copilot.vim]
 - [indent-blankline.nvim]
 - [leap.nvim]
+- [neo-tree.nvim]
 - [nvim-cmp]
-- [nvim-tree.lua]
 - [nvim-treesitter]
 - [nvim-window-picker]
 
-  Colors has to be set manually, as shown in the following snippet.
-
-  ```lua
-  local config = {
-    autoselect_one = false,
-    include_current_win = true,
-    selection_chars = 'JKFLAHDSG',
-  }
-  local colors = require'sopa.plugins.window-picker'.colors
-  config = vim.tbl_deep_extend('force', config, colors)
-  require'window-picker'.setup(config)
-  ```
-
-[bufferline.nvim]: https://github.com/akinsho/bufferline.nvim
-[copilot.vim]: https://github.com/github/copilot.vim
+[GUI]: https://neovim.io/doc/user/gui.html#gui
 [indent-blankline.nvim]: https://github.com/lukas-reineke/indent-blankline.nvim
 [leap.nvim]: https://github.com/ggandor/leap.nvim
+[neo-tree.nvim]: https://github.com/nvim-neo-tree/neo-tree.nvim
+[Neovim]: https://neovim.io
 [nvim-cmp]: https://github.com/hrsh7th/nvim-cmp
-[nvim-tree.lua]: https://github.com/kyazdani42/nvim-tree.lua
 [nvim-treesitter]: https://github.com/nvim-treesitter/nvim-treesitter
 [nvim-window-picker]: https://github.com/s1n7ax/nvim-window-picker

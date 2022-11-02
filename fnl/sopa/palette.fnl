@@ -17,9 +17,5 @@
     14 :#ba74ff
     15 :#fc4ad0})
 
-(fn hex [i]
-  "Return string in `#rrggbb` format of color at index `i` of palette."
-  (. palette i))
-
-{ : hex
-  : palette}
+(fn ix [ix] (. palette ix))
+(setmetatable {: ix} {:__call ix :__index palette :__newindex (fn [_ _ _])})
