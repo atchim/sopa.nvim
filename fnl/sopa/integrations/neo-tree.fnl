@@ -1,4 +1,4 @@
-(import-macros {: ix} :fnl.sopa.palette {: modcall} :soupmacs.soupmacs)
+(import-macros pal :fnl.sopa.palette {: modcall} :soupmacs.soupmacs)
 (local M {})
 
 (set M.groups
@@ -7,13 +7,15 @@
     :NeoTreeGitConflict {:link :NeoTreeGitModified}
     :NeoTreeGitDeleted {:link :diffRemoved}
     :NeoTreeGitIgnored {:link :Comment}
-    :NeoTreeGitModified {:fg (ix 10)}
-    :NeoTreeGitUntracked {:fg (ix 9)}
-    :NeoTreeGitRenamed {:fg (ix 12)}
+    :NeoTreeGitModified {:fg (pal 10)}
+    :NeoTreeGitUntracked {:fg (pal 9)}
+    :NeoTreeGitRenamed {:fg (pal 12)}
     :NeoTreeModified {:link :NeoTreeGitModified}
-    :NeoTreeRootName {:fg (ix 14) :bold true}
-    :NeoTreeTitleBar {:bg (ix 3) :fg (ix 12) :bold true}})
+    :NeoTreeRootName {:fg (pal 14) :bold true}
+    :NeoTreeTitleBar {:bg (pal 3) :fg (pal 12) :bold true}})
 
-(fn M.init [] (modcall :sopa :hi_groups M.groups))
+(fn M.init []
+  "Highlights grousp for Neo-tree."
+  (modcall :sopa :hi_groups M.groups))
 
 M

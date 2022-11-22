@@ -1,21 +1,28 @@
-(local palette
-  { -1 :NONE
-    00 :#080808
-    01 :#0c0c0c
-    02 :#121212
-    03 :#1a1a1a
-    04 :#252525
-    05 :#383838
-    06 :#5a5a5a
-    07 :#959595
-    08 :#ff5b5b
-    09 :#bc8f05
-    10 :#54a900
-    11 :#00ad2b
-    12 :#00a7a7
-    13 :#6b90ff
-    14 :#ba74ff
-    15 :#fc4ad0})
+(macro z [ls]
+  "Returns a zero-based indexing version of `ls`."
+  (collect [i v (ipairs ls)] (values (- i 1) v)))
 
-(fn ix [ix] (. palette ix))
-(setmetatable {: ix} {:__call ix :__index palette :__newindex (fn [_ _ _])})
+(let
+  [ palette
+    (z
+      [ :#080808
+        :#0c0c0c
+        :#121212
+        :#1a1a1a
+        :#252525
+        :#383838
+        :#5a5a5a
+        :#959595
+        :#ff5b5b
+        :#bc8f05
+        :#54a900
+        :#00ad2b
+        :#00a7a7
+        :#6b90ff
+        :#ba74ff
+        :#fc4ad0])]
+  (setmetatable
+    {}
+    { :__call (fn [_ i] (. palette i))
+      :__index palette
+      :__newindex (fn [_ _ _])}))

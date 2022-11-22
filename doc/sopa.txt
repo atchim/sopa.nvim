@@ -102,9 +102,6 @@ COLOR PALETTE                                                *sopa-api-palette*
   If called or indexed, it returns a string in the `#rrggbb` format for a color
   with index {ix} in |sopa-colors|.
 
-  Notes~
-    - If {ix} is `-1`, it returns `"NONE"`.
-
   Parameters~
     {i} `number`
       Index of the color in the palette to get the color string.
@@ -112,9 +109,6 @@ COLOR PALETTE                                                *sopa-api-palette*
   Returns~
     {rgb} `string`
       Color in the `#rrggbb` format. |gui-colors|
-
-`sopa.palette`.ix({ix}) -> {rgb}                            *sopa.palette.ix()*
-  Same as calling or indexing |sopa.palette| with {ix}.
 
 NVIM-WINDOW-PICKER INTEGRATION       *sopa-api-integrations-nvim-window-picker*
 

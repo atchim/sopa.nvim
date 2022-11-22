@@ -22,7 +22,6 @@
     :table
     (let [tbl {}]
       (each [_ integration (ipairs arg)]
-        ; Make sure integration name is valid.
         (. valid-integrations integration)
         (tset tbl integration true))
       (set user-config.enabled_integrations tbl))

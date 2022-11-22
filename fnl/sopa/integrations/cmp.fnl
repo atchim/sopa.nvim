@@ -1,13 +1,13 @@
-(import-macros {: ix} :fnl.sopa.palette {: modcall} :soupmacs.soupmacs)
+(import-macros pal :fnl.sopa.palette {: modcall} :soupmacs.soupmacs)
 (local M {})
 
 (set M.groups
   { ; Constant-Like
-    :CmpItemKindConstant {:fg (ix 9) :bold true}
+    :CmpItemKindConstant {:fg (pal 9) :bold true}
     :CmpItemKindValue {:link :CmpItemKindConstant}
 
     ; Identifier-Like
-    :CmpItemKindVariable {:fg (ix 13) :bold true}
+    :CmpItemKindVariable {:fg (pal 13) :bold true}
     :CmpItemKindConstructor {:link :CmpItemKindMethod}
     :CmpItemKindField {:link :CmpItemKindVariable}
     :CmpItemKindFunction {:link :CmpItemKindVariable}
@@ -15,15 +15,15 @@
     :CmpItemKindProperty {:link :CmpItemKindField}
 
     ; Match
-    :CmpItemAbbrMatchFuzzy {:fg (ix 14) :bold true}
-    :CmpItemAbbrMatch {:fg (ix 10) :bold true}
+    :CmpItemAbbrMatch {:fg (pal 10) :bold true}
+    :CmpItemAbbrMatchFuzzy {:fg (pal 14) :bold true}
 
     ; Statement-Like
-    :CmpItemKindKeyword {:fg (ix 15) :bold true}
+    :CmpItemKindKeyword {:fg (pal 15) :bold true}
     :CmpItemKindOperator {:link :CmpItemKindKeyword}
 
     ; Type-Like
-    :CmpItemKindTypeParamter {:fg (ix 14) :bold true}
+    :CmpItemKindTypeParamter {:fg (pal 14) :bold true}
     :CmpItemKindClass {:link :CmpItemKindStruct}
     :CmpItemKindEnum {:link :CmpItemKindTypeParamter}
     :CmpItemKindEnumMember {:link :CmpItemKindEnum}
@@ -34,13 +34,13 @@
 
     ; Misc
     :CmpItemAbbrDeprecated {:strikethrough true}
-    :CmpItemKindColor {:fg (ix 12) :bold true}
-    :CmpItemKindEvent {:fg (ix 10) :bold true}
-    :CmpItemKindFile {:fg (ix 14) :bold true}
-    :CmpItemKindFolder {:fg (ix 15) :bold true}
-    :CmpItemKindModule {:fg (ix 8) :bold true}
-    :CmpItemKindText {:fg (ix 11) :bold true}
-    :CmpItemKindSnippet {:fg (ix 12) :bold true}})
+    :CmpItemKindColor {:fg (pal 12) :bold true}
+    :CmpItemKindEvent {:fg (pal 10) :bold true}
+    :CmpItemKindFile {:fg (pal 14) :bold true}
+    :CmpItemKindFolder {:fg (pal 15) :bold true}
+    :CmpItemKindModule {:fg (pal 8) :bold true}
+    :CmpItemKindText {:fg (pal 11) :bold true}
+    :CmpItemKindSnippet {:fg (pal 12) :bold true}})
 
 (fn M.init [] (modcall :sopa :hi_groups M.groups))
 

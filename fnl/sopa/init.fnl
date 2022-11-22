@@ -1,4 +1,4 @@
-(import-macros {: subcalls} :soupmacs.soupmacs)
+(import-macros {: modcall} :soupmacs.soupmacs)
 (local M {})
 
 (fn M.hi_groups [groups]
@@ -10,6 +10,7 @@
   (vim.cmd "hi clear")
   (when (vim.fn.exists :syntax) (vim.cmd "syntax reset"))
   (set vim.g.colors_name :sopa)
-  (subcalls :init :sopa :vanilla :integrations))
+  (modcall :sopa.vanilla :init [])
+  (modcall :sopa.integrations :init []))
 
 M

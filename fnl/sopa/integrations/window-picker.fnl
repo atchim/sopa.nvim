@@ -1,9 +1,9 @@
-(import-macros {: ix} :fnl.sopa.palette)
+(import-macros pal :fnl.sopa.palette)
 (local M {})
 
 (set M.colors
-  { :current_win_hl_color (ix 14)
-    :fg_color (ix 0)
-    :other_win_hl_color (ix 10)})
+  { :current_win_hl_color (pal 14)
+    :fg_color (pal 0)
+    :other_win_hl_color (pal 10)})
 
 M
