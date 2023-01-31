@@ -1,4 +1,4 @@
-(import-macros pal :fnl.sopa.palette {: modcall} :soupmacs.soupmacs)
+(import-macros pal :lua.sopa.palette {: modcall} :soupmacs.soupmacs)
 (local M {})
 
 (set M.groups

@@ -1,4 +1,4 @@
-(import-macros pal :fnl.sopa.palette)
+(import-macros pal :lua.sopa.palette)
 (local M {})
 
 (set M.groups
