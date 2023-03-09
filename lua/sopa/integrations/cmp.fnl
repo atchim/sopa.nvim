@@ -1,13 +1,12 @@
-(import-macros pal :lua.sopa.palette {: modcall} :soupmacs.soupmacs)
-(local M {})
+(import-macros x :lua.sopa.palette)
 
-(set M.groups
+(local groups
   { ; Constant-Like
-    :CmpItemKindConstant {:fg (pal 9) :bold true}
+    :CmpItemKindConstant {:fg (x 9) :bold true}
     :CmpItemKindValue {:link :CmpItemKindConstant}
 
     ; Identifier-Like
-    :CmpItemKindVariable {:fg (pal 13) :bold true}
+    :CmpItemKindVariable {:fg (x 13) :bold true}
     :CmpItemKindConstructor {:link :CmpItemKindMethod}
     :CmpItemKindField {:link :CmpItemKindVariable}
     :CmpItemKindFunction {:link :CmpItemKindVariable}
@@ -15,15 +14,15 @@
     :CmpItemKindProperty {:link :CmpItemKindField}
 
     ; Match
-    :CmpItemAbbrMatch {:fg (pal 10) :bold true}
-    :CmpItemAbbrMatchFuzzy {:fg (pal 14) :bold true}
+    :CmpItemAbbrMatch {:fg (x 10) :bold true}
+    :CmpItemAbbrMatchFuzzy {:fg (x 14) :bold true}
 
     ; Statement-Like
-    :CmpItemKindKeyword {:fg (pal 15) :bold true}
+    :CmpItemKindKeyword {:fg (x 15) :bold true}
     :CmpItemKindOperator {:link :CmpItemKindKeyword}
 
     ; Type-Like
-    :CmpItemKindTypeParamter {:fg (pal 14) :bold true}
+    :CmpItemKindTypeParamter {:fg (x 14) :bold true}
     :CmpItemKindClass {:link :CmpItemKindStruct}
     :CmpItemKindEnum {:link :CmpItemKindTypeParamter}
     :CmpItemKindEnumMember {:link :CmpItemKindEnum}
@@ -34,14 +33,17 @@
 
     ; Misc
     :CmpItemAbbrDeprecated {:strikethrough true}
-    :CmpItemKindColor {:fg (pal 12) :bold true}
-    :CmpItemKindEvent {:fg (pal 10) :bold true}
-    :CmpItemKindFile {:fg (pal 14) :bold true}
-    :CmpItemKindFolder {:fg (pal 15) :bold true}
-    :CmpItemKindModule {:fg (pal 8) :bold true}
-    :CmpItemKindText {:fg (pal 11) :bold true}
-    :CmpItemKindSnippet {:fg (pal 12) :bold true}})
+    :CmpItemKindColor {:fg (x 12) :bold true}
+    :CmpItemKindEvent {:fg (x 10) :bold true}
+    :CmpItemKindFile {:fg (x 14) :bold true}
+    :CmpItemKindFolder {:fg (x 15) :bold true}
+    :CmpItemKindModule {:fg (x 8) :bold true}
+    :CmpItemKindText {:fg (x 11) :bold true}
+    :CmpItemKindSnippet {:fg (x 12) :bold true}})
 
-(fn M.init [] (modcall :sopa :hi_groups M.groups))
+(fn setup []
+  "Sets up highlight groups for `nvim-cmp`."
+  (let [hi vim.api.nvim_set_hl]
+    (each [group args (pairs groups)] (hi 0 group args))))
 
-M
+{: groups : setup}

@@ -1,21 +1,21 @@
-(import-macros pal :lua.sopa.palette {: modcall} :soupmacs.soupmacs)
-(local M {})
+(import-macros x :lua.sopa.palette)
 
-(set M.groups
+(local groups
   { :NeoTreeDimText {:link :NonText}
     :NeoTreeGitAdded {:link :diffAdded}
     :NeoTreeGitConflict {:link :NeoTreeGitModified}
     :NeoTreeGitDeleted {:link :diffRemoved}
     :NeoTreeGitIgnored {:link :Comment}
-    :NeoTreeGitModified {:fg (pal 10)}
-    :NeoTreeGitUntracked {:fg (pal 9)}
-    :NeoTreeGitRenamed {:fg (pal 12)}
+    :NeoTreeGitModified {:fg (x 10)}
+    :NeoTreeGitUntracked {:fg (x 9)}
+    :NeoTreeGitRenamed {:fg (x 12)}
     :NeoTreeModified {:link :NeoTreeGitModified}
-    :NeoTreeRootName {:fg (pal 14) :bold true}
-    :NeoTreeTitleBar {:bg (pal 3) :fg (pal 12) :bold true}})
+    :NeoTreeRootName {:fg (x 14) :bold true}
+    :NeoTreeTitleBar {:bg (x 3) :fg (x 12) :bold true}})
 
-(fn M.init []
-  "Highlights grousp for Neo-tree."
-  (modcall :sopa :hi_groups M.groups))
+(fn setup []
+  "Sets up highlight groups for Neo-Tree."
+  (let [hi vim.api.nvim_set_hl]
+    (each [group args (pairs groups)] (hi 0 group args))))
 
-M
+{: groups : setup}

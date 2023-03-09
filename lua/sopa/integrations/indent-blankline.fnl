@@ -1,12 +1,14 @@
-(import-macros pal :lua.sopa.palette {: modcall} :soupmacs.soupmacs)
-(local M {})
+(import-macros x :lua.sopa.palette)
 
-(set M.groups
-  { :IndentBlanklineChar {:fg (pal 2) :nocombine true}
-    :IndentBlanklineContextChar {:fg (pal 5) :nocombine true}
-    :IndentBlanklineContextStart {:sp (pal 5) :underline true}
+(local groups
+  { :IndentBlanklineChar {:fg (x 2) :nocombine true}
+    :IndentBlanklineContextChar {:fg (x 5) :nocombine true}
+    :IndentBlanklineContextStart {:sp (x 5) :underline true}
     :IndentBlanklineSpaceCharBlankline {:link :IndentBlanklineChar}})
 
-(fn M.init [] (modcall :sopa :hi_groups M.groups))
+(fn setup []
+  "Sets up highlight groups for `indent-blankline`."
+  (let [hi vim.api.nvim_set_hl]
+    (each [group args (pairs groups)] (hi 0 group args))))
 
-M
+{: groups : setup}

@@ -1,10 +1,10 @@
-(macro z [ls]
+(macro zero-based [ls]
   "Returns a zero-based indexing version of `ls`."
   (collect [i v (ipairs ls)] (values (- i 1) v)))
 
 (let
-  [ palette
-    (z
+  [ __index
+    (zero-based
       [ :#080808
         :#0c0c0c
         :#121212
@@ -20,9 +20,7 @@
         :#00a7a7
         :#6b90ff
         :#ba74ff
-        :#fc4ad0])]
-  (setmetatable
-    {}
-    { :__call (fn [_ i] (. palette i))
-      :__index palette
-      :__newindex (fn [_ _ _])}))
+        :#fc4ad0])
+    __call (fn [_ i] (. __index i))
+    __newindex #nil]
+  (setmetatable {} {: __call : __index : __newindex}))

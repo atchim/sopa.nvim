@@ -12,7 +12,7 @@ FEATURES                                                        *sopa-features*
 ===============================================================================
 COLORS                                                            *sopa-colors*
 
->
+>markdown
   | #  | HTML    | HUE    | L*    |
   |----|---------|--------|-------|
   |  0 | #080808 |   0    |  2.19 |
@@ -34,6 +34,73 @@ COLORS                                                            *sopa-colors*
 <
 
 ===============================================================================
+USAGE                                                              *sopa-usage*
+
+To simply apply the color scheme, run `:colorscheme sopa`. To configure the
+color scheme without applying it, use |sopa.config.config|. To configure and
+apply the color scheme, use |sopa.setup()|.
+
+===============================================================================
+CONFIGURATION                                                     *sopa-config*
+
+BRIEF OVERVIEW                                           *sopa-config-overview*
+
+The plugin configuration is made via what is called by the plugin author a
+"metasetting", which is a table containing settings that have default values
+that can be overwritten by the user preferences, and then restored to their
+defaults by assigning them to `nil`. This approach was heavily inspired by
+this article
+<https://hiphish.github.io/blog/2022/03/15/lua-metatables-for-neovim-plugin-settings>
+about plugin configuration via Lua metatables.
+
+There are two ways to configure settings, which are via |sopa.setup()|, and via
+|sopa.config| directly. To configure a nested setting within the table, the
+user can do the following.
+
+>lua
+  require'sopa.config'.config.integrations.cmp = false
+<
+
+To configure multiple settings within a table, the user can do the following
+alternative form, which is more suitable.
+
+>lua
+  require'sopa.config'.config.integrations = {
+    cmp = false,
+    ['indent-blankline'] = nil, -- Restores to default value.
+    ['neo-tree'] = false,
+  }
+<
+
+CONFIGURATION TABLE                                         *sopa-config-table*
+
+The following snippet shows the default configuration and explains their
+settings.
+
+>lua
+  {
+    -- Custom groups to be highlighted. This is a table where the keys stands
+    -- for the name of the highlight group, and the value is a table conforming
+    -- with the `{*val}` parameter of `nvim_set_hl()`.
+    custom_groups = {}
+
+    -- Integrations for highlighting groups for other plugins. Each field
+    -- stands for the plugin, while its boolean value defines whether to apply
+    -- highlight groups for that plugin.
+    integrations = {
+      cmp = true, -- Integration for `nvim-cmp`.
+      ['indent-blankline'] = true, -- Integration for `indent-blankline.nvim`.
+      leap = true, -- Integration for `leap.nvim`.
+      ['neo-tree'] = true, -- Integration for `neo-tree.nvim`.
+      treesitter = true, -- Integration for `nvim-treesitter`.
+    }
+
+    -- Whether to enable colors for Noevim's builtin terminal emulator.
+    terminal_colors = true,
+  }
+<
+
+===============================================================================
 INTEGRATIONS                                                *sopa-integrations*
 
 - |indent-blankline|
@@ -41,92 +108,67 @@ INTEGRATIONS                                                *sopa-integrations*
 - |neo-tree|
 - |nvim-cmp|
 - |nvim-treesitter|
-- nvim-window-picker |sopa-integrations-nvim-window-picker-example|
 
 ===============================================================================
 API                                                                  *sopa-api*
 
-SOPA                                                            *sopa-api-sopa*
+Existent modules that are not shown here are meant for internal usage only.
+However, it is possible to the user to access highlight group definitions
+established by this colors scheme in the `groups` table exported by the modules
+`sopa.builtin` and the submodules of `sopa.integrations`.
+
+SOPA
 
 `sopa`                                                                   *sopa*
-  Table containing functions for both highlighting groups and loading this
-  color scheme.
 
-`sopa`.hi_groups({groups})                                   *sopa.hi_groups()*
-  Helper function for highlighting groups.
+Table representing the main module of this plugin.
 
-  Parameters~
-    {groups} `table`
-      Each field of this table stands for the group to be highlighted and the
-      values must be a table with fields and values set according to the {val}
-      parameter from |nvim_set_hl()|.
+`sopa`.setup({?config})                                          *sopa.setup()*
 
-  See Also~
-    |nvim_set_hl()|
+Function for setting up configurations, and applying highlight definitions for
+groups as `:colorscheme sopa` would do.
 
-`sopa`.init()                                                     *sopa.init()*
-  Loads the Sopa de Mamaco color scheme.
+When {?config} is `nil` the color scheme is loaded with the current
+configuration. Otherwise if it is a table, the configuration is applied
+overwritting defaults.
 
-  This is the pure Lua equivalent for the `colorscheme sopa` command. If
-  'termguicolors' is not set, no changes will be made to the color groups and
-  an error message will be outputted.
+To avoid misusing this function, see |sopa-usage|.
 
-CONFIGURATIONS                                  *sopa-config* *sopa-api-config*
+SOPA.CONFIG
 
 `sopa.config`                                                     *sopa.config*
-  Table for getting and setting options for this color scheme.
 
-  Each field of this table stands for a setting. Each setting may have their
-  value set to `nil` in addition to its possible values. By setting to `nil`,
-  the setting will be restored to their default value.
+Table representing the module for configurations.
 
-`sopa.config`.enabled_integrations           *sopa.config.enabled_integrations*
-  - Type: `table`
-  - Default Value: `{}`
+`sopa.config`.config                                       *sopa.config.config*
 
-  It's a list, or technically a table indexed by numbers, in which each indexed
-  value is a string with the name of the integration. The following list shows
-  the valid plugin names.
+Table for configuring the color scheme. See |sopa-config| for a rich
+explanatory coverage.
 
-  - `cmp`
-  - `indent-blankline`
-  - `leap`
-  - `neo-tree`
-  - `treesitter`
+`sopa.config`.reset({?config})                            *sopa.config.reset()*
 
-COLOR PALETTE                                                *sopa-api-palette*
+Resets the current configuration with {?config}, which may be `nil`, or a
+|sopa-config-table|. If {?config} is a table it will overwrite the default
+configuration.
 
-`sopa.palette`({ix}) -> {rgb}                                    *sopa.palette*
-  Functable for getting colors of this colors scheme.
+SOPA.PALETTE
 
-  If called or indexed, it returns a string in the `#rrggbb` format for a color
-  with index {ix} in |sopa-colors|.
+`sopa.palette`                                                   *sopa.palette*
 
-  Parameters~
-    {i} `number`
-      Index of the color in the palette to get the color string.
+Functable for getting colors in the `#RRGGBB` notation, used by this color
+scheme.
 
-  Returns~
-    {rgb} `string`
-      Color in the `#rrggbb` format. |gui-colors|
+When called, it takes a number argument that stands for the index of the color,
+as shown in |sopa-colors|. The function returns a string in the `#RRGGBB`
+notation for the color at the specified index.
 
-NVIM-WINDOW-PICKER INTEGRATION       *sopa-api-integrations-nvim-window-picker*
+It is also possible to get a color string by simply accessing the color index
+in the table. The following code snippet exemplifies both approaches.
 
-`sopa.integrations.window-picker`             *sopa.integrations.window-picker*
-  Table for integrating `nvim-window-picker`.
-
-`sopa.integrations.window-picker.colors`
-                                       *sopa.integrations.window-picker.colors*
-  Color definitions for `nvim-window-picker`.
-
-                                 *sopa-integrations-nvim-window-picker-example*
-  Colors has to be set manually, as shown in the following snippet.
-
->
-    local config = {}
-    local colors = require'sopa.integrations.window-picker'.colors
-    config = vim.tbl_deep_extend('force', config, colors)
-    require'window-picker'.setup(config)
+>lua
+  local palette = require'sopa.palette'
+  local red = palette[8]
+  local orange = palette(9)
 <
 
 ===============================================================================
