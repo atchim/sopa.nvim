@@ -54,8 +54,8 @@ this article
 about plugin configuration via Lua metatables.
 
 There are two ways to configure settings, which are via |sopa.setup()|, and via
-|sopa.config| directly. To configure a nested setting within the table, the
-user can do the following.
+|sopa.config.config| directly. To configure a nested setting within the table,
+the user can do the following.
 
 >lua
   require'sopa.config'.config.integrations.cmp = false
