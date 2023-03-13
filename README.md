@@ -1,4 +1,4 @@
-# Sopa de Mamaco
+# 🥣 Sopa de Mamaco
 
 > Uma delícia.
 
