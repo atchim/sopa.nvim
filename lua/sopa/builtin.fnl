@@ -6,6 +6,7 @@
     :Comment {:fg (x 6)}
     :Conceal {:fg (x 12) :italic true}
     :Constant {:fg (x 9)}
+    :Cursor {:bg (x 7) :fg (x 0)}
     :CursorColumn {:bg (x 2)}
     :CursorLine {:link :CursorColumn}
     :CursorLineNr {:fg (x 6) :bold true}
