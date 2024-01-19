@@ -10,6 +10,7 @@
     :CursorColumn {:bg (x 2)}
     :CursorLine {:link :CursorColumn}
     :CursorLineNr {:fg (x 6) :bold true}
+    :Delimiter {:link :Operator}
     :DiagnosticError {:fg (x 8)}
     :DiagnosticHint {:fg (x 9)}
     :DiagnosticInfo {:fg (x 11)}
@@ -27,6 +28,7 @@
     :ErrorMsg {:fg (x 8) :bold true}
     :FoldColumn {:link :LineNr}
     :Folded {:bg (x 2) :fg (x 6)}
+    :Function {:fg (x 13)}
     :Identifier {:fg (x 13)}
     :Ignore {}
     :IncSearch {:fg (x 14) :bold true :reverse true}
@@ -36,6 +38,7 @@
     :NonText {:fg (x 4) :bold true}
     :Normal {:bg (x 0) :fg (x 7)}
     :Number {:fg (x 10)}
+    :Operator {:link :Special}
     :Pmenu {:bg (x 1) :fg (x 6)}
     :PmenuSBar {:bg (x 2)}
     :PmenuSel {:bg (x 3)}
@@ -54,6 +57,7 @@
     :StatusLine {:bg (x 2) :fg (x 7) :bold true}
     :StatusLineNC {:bg (x 1) :fg (x 5) :bold true}
     :String {:link :Character}
+    :Structure {:link :Type}
     :TabLine {:bg (x 1) :fg (x 6) :bold true}
     :TabLineFill {:bg (x 1)}
     :TabLineSel {:bg (x 2) :fg (x 7) :bold true}
