@@ -3,7 +3,8 @@
 (local groups
   { "@text.danger" {:fg (x 8) :bold true :reverse true}
     "@text.note" {:fg (x 12) :bold true :reverse true}
-    "@text.warning" {:fg (x 9) :bold true :reverse true}})
+    "@text.warning" {:fg (x 9) :bold true :reverse true}
+    "@variable" {:link :Identifier}})
 
 (fn setup []
   "Sets up highlight groups for `nvim-treesitter`."
